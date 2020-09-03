@@ -1,0 +1,31 @@
+# HTTP Server配置
+[server]
+	Address        = ":8299"
+	ServerAgent    = "gf_demo_api"
+	LogPath        = "./data/logs"
+	NameToUriType  = 2
+	RouteOverWrite = true
+
+# 全局日志配置 ERROR/DEBUG
+[logger]
+    Path   = "./data/logs"
+    Level  = "DEBUG"
+    Stdout = true
+    RotateSize           = "10M"
+    RotateBackupLimit    = 7
+    RotateBackupExpire   = "7d"
+    RotateBackupCompress = 9
+
+# 数据库连接
+[database]
+    link  = "mysql:root:root@tcp(127.0.0.1:3306)/admindb"
+    debug = true
+    # 数据库日志对象配置
+    [database.logger]
+        Path   = "./data/logs"
+        Level  = "DEBUG"
+        Stdout = true
+
+[redis]
+    default = "127.0.0.1:6379,0,?idleTimeout=600"
+    cache   = "127.0.0.1:6379,1,123456?idleTimeout=600"
